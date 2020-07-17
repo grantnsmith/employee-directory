@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import util from "../../utils/utils";
 
 function Table(props) {
   return (
@@ -23,8 +24,10 @@ function Table(props) {
               {result.name.first} {result.name.last}
             </td>
             <td>{result.phone}</td>
-            <td>{result.email}</td>
-            <td>{result.dob.date}</td>
+            <td>
+              <a href={result.email}>{result.email}</a>
+            </td>
+            <td>{util.formatDOB(result.dob.date)}</td>
           </tr>
         </tbody>
       ))}
