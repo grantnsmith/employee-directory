@@ -10,7 +10,7 @@ import API from "./utils/API";
 
 class App extends Component {
   state = {
-    results: {},
+    results: [],
     search: "",
   };
 
@@ -20,7 +20,7 @@ class App extends Component {
 
   findEmployees = () => {
     API.search()
-      .then((res) => this.setState({ results: res.data }))
+      .then((res) => this.setState({ results: res.data.results }))
       .catch((err) => console.log(err));
   };
 
@@ -32,13 +32,7 @@ class App extends Component {
           <Row>
             <Col>
               <Form />
-              <Table
-                phone={this.state.results.phone}
-                picture={this.state.results.picture}
-                name={this.state.results.name}
-                email={this.state.results.email}
-                dob={this.state.results.dob}
-              />
+              <Table results={this.state.results} />
             </Col>
           </Row>
         </Container>
