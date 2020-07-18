@@ -18,9 +18,29 @@ class App extends Component {
     this.findEmployees();
   }
 
+  ascOrder = (a, b) => {
+    var a = a.name.first,
+      b = b.name.first;
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  };
+
+  descOrder = (a, b) => {
+    var a = a.name.first,
+      b = b.name.first;
+    if (a > b) return -1;
+    if (a < b) return 1;
+    return 0;
+  };
+
   findEmployees = () => {
     API.search()
-      .then((res) => this.setState({ results: res.data.results }))
+      .then((res) =>
+        this.setState({
+          results: res.data.results.sort(this.ascOrder),
+        })
+      )
       .catch((err) => console.log(err));
   };
 
