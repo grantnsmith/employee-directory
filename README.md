@@ -1,4 +1,4 @@
-# A React app Employee Directory
+# A React-App Employee Directory
 An employee directory system built with React and deployed on Heorku. 
 
 ## Links
