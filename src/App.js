@@ -12,6 +12,7 @@ import util from "./utils/utils";
 class App extends Component {
   state = {
     results: [],
+    filteredResults: [],
     search: "",
     order: "ascending",
   };
@@ -25,6 +26,7 @@ class App extends Component {
       .then((res) =>
         this.setState({
           results: res.data.results.sort(util.ascOrderName),
+          filteredResults: res.data.results.sort(util.ascOrderName),
         })
       )
       .catch((err) => console.log(err));
@@ -46,6 +48,17 @@ class App extends Component {
     }
   };
 
+  handleInputChange = (event) => {
+    event.preventDefault();
+    const filteredArr = this.state.results.filter((person) => {
+      const name = person.name.first + " " + person.name.last;
+      return name.toLowerCase().startsWith(event.target.value.toLowerCase());
+    });
+    this.setState({
+      filteredResults: filteredArr,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -53,9 +66,12 @@ class App extends Component {
         <Container>
           <Row>
             <Col>
-              <Form />
+              <Form
+                value={this.state.search}
+                handleSearch={this.handleInputChange}
+              />
               <Table
-                results={this.state.results}
+                results={this.state.filteredResults}
                 order={this.state.order}
                 sorting={this.changeSorting}
               />

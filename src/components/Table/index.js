@@ -15,7 +15,7 @@ function Table(props) {
         <tr>
           <th scope="col">Image</th>
           <th scope="col" onClick={props.sorting}>
-            Name <i class={icon}></i>
+            Name <i className={icon}></i>
           </th>
           <th scope="col">Phone</th>
           <th scope="col">Email</th>
