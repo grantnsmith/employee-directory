@@ -36,13 +36,13 @@ class App extends Component {
     if (this.state.order === "ascending") {
       this.setState({
         ...this.state,
-        results: this.state.results.sort(util.descOrderName),
+        filteredResults: this.state.results.sort(util.descOrderName),
         order: "descending",
       });
     } else if (this.state.order === "descending") {
       this.setState({
         ...this.state,
-        results: this.state.results.sort(util.ascOrderName),
+        filteredResults: this.state.results.sort(util.ascOrderName),
         order: "ascending",
       });
     }
